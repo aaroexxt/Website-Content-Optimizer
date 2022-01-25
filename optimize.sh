@@ -39,6 +39,8 @@ do
             echo "Use -f <filepath> to specify directory"
             echo "Use -d to delete all old generated files without regenerating image cache"
             echo "Use -r to delete all old files and then regenerate image cache"
+            echo "Use -h to display this help message"
+            exit 0
             ;;
     esac
 done
