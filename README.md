@@ -6,7 +6,7 @@ Automatically optomize all content on my portfolio website, but could be applied
 This script was designed for any application that requires deployment on the web, in order to create the fastest websites possible.
 
 It works by applying a different compression algorithm to many different file types; including:
-- PNGs (using [pngquant](https://github.com/kornelski/pngquant]))
+- PNGs (using [pngquant](https://github.com/kornelski/pngquant))
 - JPGs and JPEGs (using [jpegoptim](https://github.com/tjko/jpegoptim))
 - MOVs and MP4s (using [ffmpeg](https://github.com/FFmpeg/FFmpeg) for compression + resizing)
 
@@ -40,7 +40,7 @@ So, a sample command would look like: `bash optimize.sh -f public/content/pages 
 ## Required Libraries
 
 All of the following are required to run this program:
-- [pngquant](https://github.com/kornelski/pngquant]
+- [pngquant](https://github.com/kornelski/pngquant)
 - [jpegoptim](https://github.com/tjko/jpegoptim)
 - [imagemagick](https://github.com/ImageMagick/ImageMagick)
 - [exiftool](https://github.com/exiftool/exiftool)
