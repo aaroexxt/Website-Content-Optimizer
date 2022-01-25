@@ -34,6 +34,7 @@ Note that for Mov and Mp4 files, the thumbnail is created in JPG format.
 | -f <dirname> | Folder containing content to optimize | Yes |
 | -r | If passed, will 'reload' all optimized files by first deleting then re-optimizing | No (flag) |
 | -d | If passed, will delete all optimized files and move originals back to their original location | No (flag) |
+| -h | If passed, display a small help message | No (flag) |
 
 So, a sample command would look like: `bash optimize.sh -f public/content/pages -r`
 
