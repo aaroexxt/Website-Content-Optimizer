@@ -132,7 +132,7 @@ optimize_dir () {
                             png)
                                 # Generate large optimized version of photo
                                 convert "${original_path}" -resize 1920x1080\> "${pathname}" > /dev/null 2>&1
-                                pngquant --speed 1 --force --quality=65-100 --strip --skip-if-larger --verbose --output "${pathname}" "${pathname}" > /dev/null 2>&1
+                                pngquant --speed 1 --force --quality=60-100 --strip --skip-if-larger --verbose --output "${pathname}" "${pathname}" > /dev/null 2>&1
 
                                 # Generate thumbnail image
                                 convert "${pathname}" -resize 320x180\> "${thumb_path_image}" > /dev/null 2>&1
@@ -142,7 +142,7 @@ optimize_dir () {
                             jpg|jpeg)
                                 # Generate large optimized version of photo
                                 convert "$original_path" -resize 1920x1080\> "${pathname}" > /dev/null 2>&1
-                                jpegoptim --all-progressive --max=75 "${pathname}" > /dev/null 2>&1
+                                jpegoptim --all-progressive --max=80 "${pathname}" > /dev/null 2>&1
 
                                 # Generate thumbnail image
                                 convert "${pathname}" -resize 320x180\> "${thumb_path_image}" > /dev/null 2>&1
