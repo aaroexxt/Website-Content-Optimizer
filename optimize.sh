@@ -159,13 +159,13 @@ optimize_dir () {
 
                             # For video formats, scale the video down by half and generate thumbnail
                             mov)
-                                ffmpeg -hide_banner -loglevel error -y -i "${original_path}" -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx264 -crf 20 "${pathname}" > /dev/null 2>&1
-                                ffmpeg -hide_banner -loglevel error -i "${pathname}" -frames:v 1 -vf scale=320:-2 -q:v 3 "${thumb_path_video}" > /dev/null 2>&1
+                                ffmpeg -hide_banner -loglevel error -y -i "${original_path}" -c:v libx264 -c:a aac -vf "[in]format=yuv420p[middle];[middle]scale=trunc(iw/4)*2:trunc(ih/4)*2[out]" -movflags faststart -crf 25 "${pathname}"
+                                ffmpeg -hide_banner -loglevel error -y -i "${pathname}" -frames:v 1 -vf scale=320:-2 -q:v 3 "${thumb_path_video}"
                                 ;;
 
                             mp4)
-                                ffmpeg -hide_banner -loglevel error -y -i "${original_path}" -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx264 -crf 20 "${pathname}" > /dev/null 2>&1
-                                ffmpeg -hide_banner -loglevel error -i "${pathname}" -frames:v 1 -vf scale=320:-2 -q:v 3 "${thumb_path_video}" > /dev/null 2>&1
+                                ffmpeg -hide_banner -loglevel error -y -i "${original_path}" -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx264 -movflags faststart -crf 20 "${pathname}"
+                                ffmpeg -hide_banner -loglevel error -y -i "${pathname}" -frames:v 1 -vf scale=320:-2 -q:v 3 "${thumb_path_video}"
                                 ;;
 
                             pdf)
