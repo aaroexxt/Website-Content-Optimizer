@@ -10,6 +10,7 @@
 # - pngquant
 # - imagemagick
 # - exiftool
+# - ghostscript
 
 # sample run command: bash optimize.sh -f public/content/pages -r
 
@@ -53,14 +54,20 @@ if ! [ -d "$filepath" ]; then
     echo "Directory specified does not exist; exiting" && exit 1
 fi
 
-change_exts=("JPG" "PNG" "MOV" "MP4" "HEIC")
-optimize_exts=("jpg" "png" "mov" "mp4" "jpeg")
+change_exts=("JPG" "PNG" "MOV" "MP4" "HEIC" "HEIF" "PDF")
+optimize_exts=("jpg" "png" "mov" "mp4" "jpeg" "pdf")
 
 containsElement () {
   local e match="$1"
   shift
   for e; do [[ "$e" == "$match" ]] && return 0; done
   return 1
+}
+
+# thanks https://gist.github.com/ahmed-musallam/27de7d7c5ac68ecbd1ed65b6b48416f9
+pdfcompress()
+{
+   gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; 
 }
 
 # Various counters for operations
@@ -99,7 +106,7 @@ optimize_dir () {
                 renameCount=$((renameCount+1))
             fi
 
-            # Check for heic, and if so rename to jpg
+            # Check for heic, and if so convert to jpg
             containsElement "$extension" "heic"
             if [[ $? -eq "0" ]]; then
                 newpath="$basepath/$filename.jpg"
@@ -125,6 +132,7 @@ optimize_dir () {
                     if [[ ! -f $original_path ]]; then
                         echo "Optimizing $pathname; no original version found"
 
+                        # Copy original file to new "original" prefixed filename
                         cp "$pathname" "$original_path"
 
                         case $extension in
@@ -160,12 +168,16 @@ optimize_dir () {
                                 ffmpeg -hide_banner -loglevel error -i "${pathname}" -frames:v 1 -vf scale=320:-2 -q:v 3 "${thumb_path_video}" > /dev/null 2>&1
                                 ;;
 
+                            pdf)
+                                pdfcompress "${original_path}" "${pathname}" > /dev/null 2>&1
+                                ;;
+
                             *)
                                 echo "Unknown file type"
                                 ;;
                         esac
 
-                        exiftool -overwrite_original -all= -TagsFromFile @ -Orientation -ColorSpaceTags ${pathname} # remove EXIF data
+                        exiftool -overwrite_original -all= -TagsFromFile @ -Orientation -ColorSpaceTags ${pathname} > /dev/null 2>&1 # remove EXIF data
 
                         compressCount=$((compressCount+1))
                     fi

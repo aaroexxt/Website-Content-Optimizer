@@ -9,6 +9,7 @@ It works by applying a different compression algorithm to many different file ty
 - PNGs (using [pngquant](https://github.com/kornelski/pngquant))
 - JPGs and JPEGs (using [jpegoptim](https://github.com/tjko/jpegoptim))
 - MOVs and MP4s (using [ffmpeg](https://github.com/FFmpeg/FFmpeg) for compression + resizing)
+- PDFs (using [ghostscript](https://www.ghostscript.com))
 
 as well as resizing images using [imagemagick](https://github.com/ImageMagick/ImageMagick).
 
@@ -46,3 +47,4 @@ All of the following are required to run this program:
 - [imagemagick](https://github.com/ImageMagick/ImageMagick)
 - [exiftool](https://github.com/exiftool/exiftool)
 - [ffmpeg](https://github.com/FFmpeg/FFmpeg)
+- [ghostscript](https://www.ghostscript.com)
