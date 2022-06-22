@@ -13,6 +13,12 @@ It works by applying a different compression algorithm to many different file ty
 
 as well as resizing images using [imagemagick](https://github.com/ImageMagick/ImageMagick).
 
+All of these can be installed on Linux by running:
+`sudo apt-get install -y pngquant jpegoptim ffmpeg ghostscript imagemagick`
+
+On Mac:
+`brew install pngquant jpegoptim ffmpeg ghostscript imagemagick`
+
 It also converts all HEIC or HEIF images to an optimized JPG format so that they can be deployed easily on the web.
 Finally, all images are stripped of their EXIF data relating to location or camera information, for increased privacy.
 
