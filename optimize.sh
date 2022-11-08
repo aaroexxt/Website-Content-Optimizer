@@ -74,32 +74,32 @@ fi
 
 # Check whether required packages to run are installed
 if ! [ -x "$(command -v gs)" ]; then
-  echo 'Error: ghostscript is not installed.' >&2
+  echo 'Fatal Error: ghostscript is not installed.' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v ffmpeg)" ]; then
-  echo 'Error: ffmpeg is not installed.' >&2
+  echo 'Fatal Error: ffmpeg is not installed.' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v pngquant)" ]; then
-  echo 'Error: pngquant is not installed.' >&2
+  echo 'Fatal Error: pngquant is not installed.' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v jpegoptim)" ]; then
-  echo 'Error: jpegoptim is not installed.' >&2
+  echo 'Fatal Error: jpegoptim is not installed.' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v exiftool)" ]; then
-  echo 'Error: exiftool is not installed.' >&2
+  echo 'Fatal Error: exiftool is not installed.' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v convert)" ]; then
-  echo 'Error: ImageMagick is not installed.' >&2
+  echo 'Fatal Error: ImageMagick is not installed.' >&2
   exit 1
 fi
 
