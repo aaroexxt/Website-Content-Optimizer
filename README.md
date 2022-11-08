@@ -11,13 +11,13 @@ It works by applying a different compression algorithm to many different file ty
 - MOVs and MP4s (using [ffmpeg](https://github.com/FFmpeg/FFmpeg) for compression + resizing)
 - PDFs (using [ghostscript](https://www.ghostscript.com))
 
-as well as resizing images using [imagemagick](https://github.com/ImageMagick/ImageMagick).
+as well as resizing images using [imagemagick](https://github.com/ImageMagick/ImageMagick) and stripping metadata with [exiftool](https://github.com/exiftool/exiftool).
 
 All of these can be installed on Linux by running:
-`sudo apt-get install -y pngquant jpegoptim ffmpeg ghostscript imagemagick`
+`sudo apt-get install -y pngquant jpegoptim ffmpeg ghostscript imagemagick exiftool`
 
 On Mac:
-`brew install pngquant jpegoptim ffmpeg ghostscript imagemagick`
+`brew install pngquant jpegoptim ffmpeg ghostscript imagemagick exiftool`
 
 It also converts all HEIC or HEIF images to an optimized JPG format so that they can be deployed easily on the web.
 Finally, all images are stripped of their EXIF data relating to location or camera information, for increased privacy.
