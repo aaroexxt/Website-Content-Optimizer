@@ -72,6 +72,37 @@ if ! [ -d "$filepath" ]; then
     echo "Directory specified does not exist; exiting" && exit 1
 fi
 
+# Check whether required packages to run are installed
+if ! [ -x "$(command -v gs)" ]; then
+  echo 'Error: ghostscript is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v ffmpeg)" ]; then
+  echo 'Error: ffmpeg is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v pngquant)" ]; then
+  echo 'Error: pngquant is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v jpegoptim)" ]; then
+  echo 'Error: jpegoptim is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v exiftool)" ]; then
+  echo 'Error: exiftool is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v convert)" ]; then
+  echo 'Error: ImageMagick is not installed.' >&2
+  exit 1
+fi
+
 change_exts=("JPG" "PNG" "MOV" "MP4" "HEIC" "HEIF" "PDF" "M4V")
 optimize_exts=("jpg" "png" "mov" "mp4" "jpeg" "pdf")
 
@@ -130,7 +161,7 @@ prepare_dir () {
             if [[ $? -eq "0" ]]; then
                 newpath="$basepath/$filename.jpg"
                 echo "Converting HEIC to jpg $pathname"
-                sips -s format jpeg ${pathname} --out ${newpath}
+                convert ${pathname} -quality 90% ${newpath} > /dev/null 2>&1
                 rm "${pathname}" # remove heic original
 
                 # reset pathname and extensions
