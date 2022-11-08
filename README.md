@@ -1,5 +1,5 @@
 # Website-Content-Optimizer
-Automatically optomize all content on my portfolio website, but could be applied to any website
+Automatically optimize all content on my portfolio website, but could be applied to any website
 
 ## What does this script do?
 
