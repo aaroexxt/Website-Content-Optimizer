@@ -227,21 +227,21 @@ optimize_dir () {
                             png)
                                 # Generate large optimized version of photo
                                 convert "${original_path}" -resize 1920x1080\> "${pathname}" > /dev/null 2>&1
-                                pngquant --speed 1 --force --quality=60-100 --strip --skip-if-larger --verbose --output "${pathname}" "${pathname}" > /dev/null 2>&1
+                                pngquant --speed 1 --force --quality=60-90 --strip --skip-if-larger --verbose --output "${pathname}" "${pathname}" > /dev/null 2>&1
 
                                 # Generate thumbnail image
                                 convert "${pathname}" -resize 320x180\> "${thumb_path_image}" > /dev/null 2>&1
-                                pngquant --speed 1 --force --quality=20-100 --strip --skip-if-larger --verbose --output "${thumb_path_image}" "${thumb_path_image}" > /dev/null 2>&1
+                                pngquant --speed 1 --force --quality=20-80 --strip --skip-if-larger --verbose --output "${thumb_path_image}" "${thumb_path_image}" > /dev/null 2>&1
                                 ;;
                             
                             jpg|jpeg)
                                 # Generate large optimized version of photo
                                 convert "$original_path" -resize 1920x1080\> "${pathname}" > /dev/null 2>&1
-                                jpegoptim --all-progressive --max=80 "${pathname}" > /dev/null 2>&1
+                                jpegoptim --all-progressive --max=87 "${pathname}" > /dev/null 2>&1
 
                                 # Generate thumbnail image
                                 convert "${pathname}" -resize 320x180\> "${thumb_path_image}" > /dev/null 2>&1
-                                jpegoptim --all-progressive --max=20 "${pathname}" > /dev/null 2>&1
+                                jpegoptim --all-progressive --max=25 "${pathname}" > /dev/null 2>&1
                                 ;;
 
                             # For video formats, scale the video down by half and generate thumbnail
